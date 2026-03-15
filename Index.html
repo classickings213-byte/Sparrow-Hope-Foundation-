@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Instructions - Sparrow Hope Foundation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f3f4f6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .warning-banner {
+            background: #dc2626;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 14px;
+            margin: -20px -20px 20px -20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: #10b981;
+            color: white;
+            padding: 30px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .card-content {
+            padding: 30px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            color: #1f2937;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .info-box p {
+            color: #1e40af;
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        /* Bank Details Section */
+        .bank-details {
+            background: #f9fafb;
+            border: 2px dashed #d1d5db;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .bank-details h3 {
+            color: #dc2626;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .detail-row {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+        
+        .detail-label {
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .copy-btn {
+            float: right;
+            background: #e5e7eb;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: -25px;
+        }
+        
+        .amount-highlight {
+            background: #dc2626;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .amount-highlight p:first-child {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .amount-highlight p:last-child {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        
+        /* Urgency Box */
+        .urgency {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border: 2px solid #dc2626;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .urgency-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        .urgency h3 {
+            color: #991b1b;
+            margin-bottom: 10px;
+        }
+        
+        .urgency p {
+            color: #7f1d1d;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .countdown {
+            font-size: 24px;
+            font-weight: bold;
+            color: #dc2626;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* Upload Section */
+        .upload-section {
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .upload-section h3 {
+            color: #059669;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .upload-box {
+            border: 3px dashed #d1d5db;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            background: #f9fafb;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .upload-box:hover {
+            border-color: #10b981;
+            background: #ecfdf5;
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .upload-text {
+            color: #374151;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .upload-hint {
+            color: #6b7280;
+            font-size: 13px;
+        }
+        
+        .file-types {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .file-type {
+            background: #e5e7eb;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #374151;
+        }
+        
+        /* Instructions */
+        .instructions {
+            background: #fffbeb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .instructions h4 {
+            color: #92400e;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+            color: #78350f;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        
+        /* Submit Button */
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+        
+        .btn-submit:hover {
+            background: #059669;
+        }
+        
+        .btn-submit:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        /* Security Badges */
+        .security-footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 20px;
+        }
+        
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+        
+        .support-text {
+            font-size: 13px;
+            color: #6b7280;
+        }
+        
+        .support-text a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        /* Educational Overlay */
+        .edu-panel {
+            background: #1e3a8a;
+            color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+        
+        .edu-panel h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .red-flag {
+            background: rgba(220, 38, 38, 0.2);
+            border-left: 4px solid #dc2626;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .red-flag strong {
+            color: #fca5a5;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .red-flag p {
+            font-size: 14px;
+            color: #dbeafe;
+            margin: 0;
+        }
+        
+        @media (max-width: 600px) {
+            .card-content {
+                padding: 20px;
+            }
+            
+            .bank-details {
+                padding: 15px;
+            }
+            
+            .detail-value {
+                font-size: 14px;
+                word-break: break-all;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Warning Banner -->
+    <div class="warning-banner">
+        ⚠️ EDUCATIONAL CASE STUDY: This is a simulated scam page. DO NOT send real money or personal information.
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🐦 Sparrow Hope Foundation</h1>
+            <p>Secure Payment Portal</p>
+        </div>
+
+        <!-- Main Card -->
+        <div class="card">
+            <div class="card-content">
+                <span class="status-badge">⏳ AWAITING PAYMENT</span>
+                
+                <h2>Payment Instructions</h2>
+                
+                <div class="info-box">
+                    <p><strong>Case ID:</strong> #SH-2024-0892 | <strong>Applicant:</strong> Shana | <strong>Amount Due:</strong> $200.00</p>
+                </div>
+
+                <!-- Amount Highlight -->
+                <div class="amount-highlight">
+                    <p>Registration Fee Required</p>
+                    <p>$200.00 USD</p>
+                </div>
+
+                <!-- Bank Transfer Details -->
+                <div class="bank-details">
+                    <h3>🏦 Bank Transfer Details</h3>
+                    <p style="color: #6b7280; font-size: 13px; margin-bottom: 20px;">
+                        Send payment via bank transfer or wire. Screenshot confirmation required.
+                    </p>
+
+                    <div class="detail-row">
+                        <div class="detail-label">Bank Name</div>
+                        <div class="detail-value">First Community Credit Union</div>
+                        <button class="copy-btn" onclick="alert('Copied (not really - this is a demo)')">Copy</button>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-label">Account Name</div>
+                        <div class="detail-value">Sparrow Hope Foundation - Operations</div>
+                        <button class="copy-btn" onclick="alert('Copied (not really - this is a demo)')">Copy</button>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-label">Account Number</div>
+                        <div class="detail-value">4839201756</div>
+                        <button class="copy-btn" onclick="alert('Copied (not really - this is a demo)')">Copy</button>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-label">Routing Number</div>
+                        <div class="detail-value">071000013</div>
+                        <button class="copy-btn" onclick="alert('Copied (not really - this is a demo)')">Copy</button>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-label">SWIFT Code (Intl)</div>
+                        <div class="detail-value">FCCUUS44XXX</div>
+                        <button class="copy-btn" onclick="alert('Copied (not really - this is a demo)')">Copy</button>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-label">Reference/Memo</div>
+                        <div class="detail-value">SH-2024-0892-SHANA</div>
+                        <button class="copy-btn" onclick="alert('Copied (not really - this is a demo)')">Copy</button>
+                    </div>
+                </div>
+
+                <!-- Alternative Payment Methods -->
+                <div style="margin: 20px 0;">
+                    <p style="text-align: center; color: #6b7280; font-size: 14px; margin-bottom: 15px;">
+                        — Or send via mobile transfer —
+                    </p>
+                    
+                    <div class="detail-row" style="background: #ecfdf5; border-color: #10b981;">
+                        <div class="detail-label">Zelle / Cash App / Venmo</div>
+                        <div class="detail-value" style="color: #059669;">sparrowhope.funding@gmail.com</div>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <!-- Instructions -->
+                <div class="instructions">
+                    <h4>📋 Payment Instructions:</h4>
+                    <ol>
+                        <li>Send exactly <strong>$200.00</strong> using details above</li>
+                        <li>Include reference number <strong>SH-2024-0892-SHANA</strong> in memo</li>
+                        <li>Take screenshot or photo of payment confirmation</li>
+                        <li>Upload proof below to activate your file</li>
+                        <li>Funds will be released within 24 hours of verification</li>
+                    </ol>
+                </div>
+
+                <!-- Urgency Timer -->
+                <div class="urgency">
+                    <div class="urgency-icon">⏰</div>
+                    <h3>Payment Deadline Approaching</h3>
+                    <p>Your reserved funds will be released to the next applicant if payment is not confirmed within:</p>
+                    <div class="countdown" id="countdown">04:59:59</div>
+                    <p style="font-size: 12px; color: #dc2626; font-weight: bold;">
+                        ⚠️ Do not close this page until payment is submitted
+                    </p>
+                </div>
+
+                <!-- Upload Section -->
+                <div class="upload-section">
+                    <h3>📤 Upload Payment Proof</h3>
+                    <p style="color: #6b7280; font-size: 14px; margin-bottom: 20px;">
+                        Required for verification. We cannot process your application without confirmation of payment.
+                    </p>
+
+                    <div class="upload-box" onclick="alert('In a real scam, this would upload to scammers. This is a demo.')">
+                        <div class="upload-icon">📎</div>
+                        <p class="upload-text">Click to upload screenshot</p>
+                        <p class="upload-hint">or drag and drop files here</p>
+                        
+                        <div class="file-types">
+                            <span class="file-type">JPG</span>
+                            <span class="file-type">PNG</span>
+                            <span class="file-type">PDF</span>
+                        </div>
+                    </div>
+
+                    <p style="text-align: center; color: #6b7280; font-size: 12px; margin-top: 15px;">
+                        Max file size: 10MB • Clear images required for verification
+                    </p>
+                </div>
+
+                <button class="btn-submit" onclick="alert('SCAM DEMONSTRATION: If this were real, your money would be gone and the scammer would disappear.')">
+                    Submit Payment & Continue →
+                </button>
+
+                <!-- Security Footer -->
+                <div class="security-footer">
+                    <div class="security-badges">
+                        <span class="badge">🔒 256-bit SSL</span>
+                        <span class="badge">✓ Verified</span>
+                        <span class="badge">🛡️ Secure</span>
+                    </div>
+                    <p class="support-text">
+                        Questions? Contact your coordinator: <a href="#">emily.carter@sparrowhope-foundation.org</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Educational Panel -->
+        <div class="edu-panel">
+            <h3>🚨 Scam Red Flags on This Page:</h3>
+            
+            <div class="red-flag">
+                <strong>Wire Transfer / Zelle / Cash App</strong>
+                <p>Scammers use irreversible payment methods. Real charities accept checks or credit cards with fraud protection.</p>
+            </div>
+            
+            <div class="red-flag">
+                <strong>Proof of Payment Upload</strong>
+                <p>Scammers use your screenshot to create fake "verification" or sell your banking info.</p>
+            </div>
+            
+            <div class="red-flag">
+                <strong>Countdown Timer</strong>
+                <p>Artificial urgency prevents you from researching or thinking critically.</p>
+            </div>
+            
+            <div class="red-flag">
+                <strong>Generic Email Domain</strong>
+                <p>@gmail.com instead of official @sparrowhope.org domain is a major warning sign.</p>
+            </div>
+            
+            <div class="red-flag">
+                <strong>"Do Not Close Page"</strong>
+                <p>Prevents you from seeking advice or verifying legitimacy elsewhere.</p>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 14px; color: #93c5fd;">
+                <strong>Remember:</strong> Legitimate organizations never pressure you for immediate wire transfers or request payment via mobile apps. Always verify through official channels.
+            </p>
+            
+            <p style="margin-top: 15px; font-size: 13px; color: #60a5fa;">
+                Report scams: <a href="https://reportfraud.ftc.gov" style="color: white;">FTC.gov/complaint</a> | <a href="https://ic3.gov" style="color: white;">IC3.gov</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Fake countdown timer
+        function updateCountdown() {
+            const countdown = document.getElementById('countdown');
+            let [hours, minutes, seconds] = countdown.textContent.split(':').map(Number);
+            
+            if (seconds > 0) {
+                seconds--;
+            } else if (minutes > 0) {
+                minutes--;
+                seconds = 59;
+            } else if (hours > 0) {
+                hours--;
+                minutes = 59;
+                seconds = 59;
+            }
+            
+            countdown.textContent = 
+                String(hours).padStart(2, '0') + ':' + 
+                String(minutes).padStart(2, '0') + ':' + 
+                String(seconds).padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
